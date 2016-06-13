@@ -237,7 +237,14 @@ class Project(object):
     def create_story(self,story_dict):
         stories_url = "https://www.pivotaltracker.com/services/v3/projects/{}/stories".format(self.project_id)
         story_xml = dicttoxml.dicttoxml(story_dict, root=False)
-        _perform_pivotal_post(stories_url, story_xml)
+        response = _perform_pivotal_post(stories_url, story_xml)
+
+        # if story created successfully, return the resulting new story
+        if (response.status_code == 200):
+            root = ET.fromstring(response.text)
+            return Story.from_node(root)
+
+
 
     def unestimated_stories(self):
         stories = self.get_stories('type:feature state:unstarted')

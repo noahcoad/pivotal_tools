@@ -286,7 +286,11 @@ def create_story(project, arguments):
 
     stories = {'story': story}
 
-    project.create_story(stories)
+    newstory = project.create_story(stories)
+
+    # if a story was created successfully, let the user know the story ID
+    if newstory:
+        print newstory.story_id
 
 
 def update_status(arguments):
