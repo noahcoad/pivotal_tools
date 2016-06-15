@@ -301,23 +301,23 @@ def update_status(arguments):
         story = load_story(story_id, arguments)
 
     if story is not None:
+        msg = lambda story, msg: "Story: [{}] {} is {}".format(story.story_id, story.name, msg)
         try:
-
             if arguments['start']:
                 story.start()
-                print "Story: [{}] {} is STARTED".format(story.story_id, story.name)
+                print msg(story, "STARTED")
             elif arguments['finish']:
                 story.finish()
-                print "Story: [{}] {} is FINISHED".format(story.story_id, story.name)
+                print msg(story, "FINISHED")
             elif arguments['deliver']:
                 story.deliver()
-                print "Story: [{}] {} is DELIVERED".format(story.story_id, story.name)
+                print msg(story, "DELIVERED")
             elif arguments['accept']:
                 story.accept()
-                print "Story: [{}] {} is ACCEPTED".format(story.story_id, story.name)
+                print msg(story, "ACCEPTED")
             elif arguments['reject']:
                 story.reject()
-                print "Story: [{}] {} is REJECTED".format(story.story_id, story.name)
+                print msg(story, "REJECTED")
 
         except InvalidStateException, e:
             print e.message
