@@ -36,7 +36,7 @@ Create a story
 
 
 Usage:
-  pivotal_tools create (feature|bug|chore) <title> [<description>] [--project-index=<pi>]
+  pivotal_tools create (feature|bug|chore) <title> [<description>] [--labels=<csv_list>] [--project-index=<pi>]
   pivotal_tools (start|finish|deliver|accept|reject) story <story_id> [--project-index=<pi>]
   pivotal_tools show stories [--project-index=<pi>] [--for=<user_name>] [--number=<number_of_stories>]
   pivotal_tools show story <story_id> [--project-index=<pi>]
@@ -48,6 +48,7 @@ Usage:
 Options:
   -h --help             Show this screen.
   --for=<user_name>     Username, or initials
+  --labels=<csv_list    Comma seperates list of labels to apply to the new story
   --project-index=<pi>  If you have multiple projects, this is the index that the project shows up in my prompt
                         This is useful if you do not want to be prompted, and then you can pipe the output
 
@@ -276,6 +277,8 @@ def create_story(project, arguments):
     story['name'] = arguments['<title>']
     if '<description>' in arguments:
         story['description'] = arguments['<description>']
+    if '--labels' in arguments:
+        story['labels'] = arguments['--labels']
 
     if arguments['bug']:
         story['story_type'] = 'bug'
