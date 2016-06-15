@@ -48,7 +48,7 @@ Usage:
 Options:
   -h --help             Show this screen.
   --for=<user_name>     Username, or initials
-  --labels=<csv_list    Comma seperates list of labels to apply to the new story
+  --labels=<csv_list>   Comma seperates list of labels to apply to the new story
   --project-index=<pi>  If you have multiple projects, this is the index that the project shows up in my prompt
                         This is useful if you do not want to be prompted, and then you can pipe the output
 
